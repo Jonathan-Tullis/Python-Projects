@@ -111,26 +111,29 @@ def handle_escape():
         messagebox.showinfo("Victory", "You escaped the dungeon!")
         root.quit()
 
+# ... (all your existing code above stays the same)
+
 def start_game():
     update_log(describe_room(player_state["location"]))
 
-# Main Window
-root = Tk()
-root.title("Dungeon Escape")
-root.geometry("500x400")
+# Only run the GUI if this file is executed directly
+if __name__ == "__main__":
+    root = Tk()
+    root.title("Dungeon Escape")
+    root.geometry("500x400")
 
-log = Text(root, wrap=WORD, state=DISABLED, height=15)
-log.pack(pady=10, padx=10)
+    log = Text(root, wrap=WORD, state=DISABLED, height=15)
+    log.pack(pady=10, padx=10)
 
-frame = Frame(root)
-frame.pack()
+    frame = Frame(root)
+    frame.pack()
 
-Button(frame, text="Go North", command=lambda: handle_move("north")).grid(row=0, column=1)
-Button(frame, text="Go South", command=lambda: handle_move("south")).grid(row=2, column=1)
-Button(frame, text="Go East", command=lambda: handle_move("east")).grid(row=1, column=2)
-Button(frame, text="Go West", command=lambda: handle_move("west")).grid(row=1, column=0)
-Button(root, text="Pick Up Item", command=handle_pickup).pack(pady=5)
-Button(root, text="Try to Escape", command=handle_escape).pack(pady=5)
+    Button(frame, text="Go North", command=lambda: handle_move("north")).grid(row=0, column=1)
+    Button(frame, text="Go South", command=lambda: handle_move("south")).grid(row=2, column=1)
+    Button(frame, text="Go East", command=lambda: handle_move("east")).grid(row=1, column=2)
+    Button(frame, text="Go West", command=lambda: handle_move("west")).grid(row=1, column=0)
+    Button(root, text="Pick Up Item", command=handle_pickup).pack(pady=5)
+    Button(root, text="Try to Escape", command=handle_escape).pack(pady=5)
 
-start_game()
-root.mainloop()
+    start_game()
+    root.mainloop()
